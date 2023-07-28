@@ -157,11 +157,11 @@ end
 local notifySorter = lib.AddAutoSort(notifyFrame)
 notifySorter.Padding = UDim.new(0.02)
 
-local configPath = "MoonReborn/Configs/"..game.PlaceId..".json"
-local configPath2 = "MoonReborn/Configs/"..game.PlaceId
+local configPath = "Elysian/Configs/"..game.PlaceId..".json"
+local configPath2 = "Elysian/Configs/"..game.PlaceId
 if not isfile(configPath) then
-	makefolder("MoonReborn")
-	makefolder("MoonReborn/Configs/")
+	makefolder("Elysian")
+	makefolder("Elysian/Configs/")
 	writefile(configPath,game:GetService("HttpService"):JSONEncode(config))
 end
 
