@@ -1,0 +1,150 @@
+        TargetInfo = Instance.new("ScreenGui")
+        MainGui = Instance.new("Frame")
+        UICorner = Instance.new("UICorner")
+        Name = Instance.new("TextLabel")
+        PlayerFace = Instance.new("ImageLabel")
+        HealthBar = Instance.new("Frame")
+        UICorner_2 = Instance.new("UICorner")
+        HealthLeft = Instance.new("TextLabel")
+        EmptyHealthBar = Instance.new("Frame")
+        UICorner_3 = Instance.new("UICorner")
+        
+        local attacking = nil
+local killaurastatson = false
+
+spawn(function()
+    while true do
+        if attacking == false then
+            MainGui.Visible = false
+
+            elseif attacking == true then
+                MainGui.Visible = true
+        end
+        wait()
+    end
+end)
+
+TargetInfo.Name = "TargetInfo"
+TargetInfo.Parent = game.CoreGui
+TargetInfo.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+TargetInfo.ResetOnSpawn = false
+
+MainGui.Name = "MainGui"
+MainGui.Parent = TargetInfo
+MainGui.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainGui.BackgroundTransparency = 0.450
+MainGui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainGui.BorderSizePixel = 0
+MainGui.Position = UDim2.new(0.5, 0, 0.6, 0)
+MainGui.Size = UDim2.new(0, 334, 0, 141)
+MainGui.Active = true
+MainGui.Visible = false
+
+UICorner.CornerRadius = UDim.new(0, 25)
+UICorner.Parent = MainGui
+
+Name.Name = "Name"
+Name.Parent = MainGui
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Name.BorderSizePixel = 0
+Name.Position = UDim2.new(0.376097918, 0, 0.048488345, 0)
+Name.Size = UDim2.new(0, 208, 0, 50)
+Name.Font = Enum.Font.RobotoCondensed
+Name.Text = "Name:"
+Name.TextColor3 = Color3.fromRGB(255, 255, 255)
+Name.TextSize = 32.000
+Name.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Name.TextXAlignment = Enum.TextXAlignment.Left
+
+PlayerFace.Name = "PlayerFace"
+PlayerFace.Parent = MainGui
+PlayerFace.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PlayerFace.BorderSizePixel = 0
+PlayerFace.Position = UDim2.new(0.0476076044, 0, 0.14052695, 0)
+PlayerFace.Size = UDim2.new(0, 100, 0, 100)
+PlayerFace.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+
+
+HealthBar.Name = "HealthBar"
+HealthBar.Parent = MainGui
+HealthBar.BackgroundColor3 = Color3.fromRGB(39, 167, 255)
+HealthBar.BorderSizePixel = 0
+HealthBar.Position = UDim2.new(0.375647813, 0, 0.599836648, 0)
+HealthBar.Size = UDim2.new(0.581269741, 0, 0.245628059, 0)
+HealthBar.ZIndex = 10
+
+UICorner_2.CornerRadius = UDim.new(0, 10)
+UICorner_2.Parent = HealthBar
+
+HealthLeft.Name = "HealthLeft"
+HealthLeft.Parent = MainGui
+HealthLeft.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HealthLeft.BackgroundTransparency = 1.000
+HealthLeft.BorderSizePixel = 0
+HealthLeft.Position = UDim2.new(0.298039824, 0, 0.274283826, 0)
+HealthLeft.Size = UDim2.new(0, 200, 0, 50)
+HealthLeft.Font = Enum.Font.RobotoCondensed
+HealthLeft.Text = "100 health left"
+HealthLeft.TextColor3 = Color3.fromRGB(255, 255, 255)
+HealthLeft.TextSize = 30.000
+
+EmptyHealthBar.Name = "EmptyHealthBar"
+EmptyHealthBar.Parent = MainGui
+EmptyHealthBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+EmptyHealthBar.BorderSizePixel = 0
+EmptyHealthBar.Position = UDim2.new(0.375647813, 0, 0.599836648, 0)
+EmptyHealthBar.Size = UDim2.new(0.581269741, 0, 0.245628059, 0)
+
+UICorner_3.CornerRadius = UDim.new(0, 10)
+UICorner_3.Parent = EmptyHealthBar
+
+spawn(function()
+    function Round(n, decimals)
+        decimals = decimals or 0
+        return math.floor(n * 10^decimals) / 10^decimals
+        
+    end
+
+
+    while true do
+        while true do
+            pcall(function()
+                if not (attacking==nil) then
+                    MainGui.Visible = true
+
+
+
+                    UsedId = attacking.UserId
+
+
+
+                    local thumbType = Enum.ThumbnailType.HeadShot
+                    local thumbSize = Enum.ThumbnailSize.Size420x420
+                    local content, isReady = game.Players:GetUserThumbnailAsync(UsedId, thumbType, thumbSize)
+
+                    PlayerFace.Image = content
+
+
+
+                    Name.Text = attacking.Name
+
+
+                    local healthbar = HealthBar
+                    local healthbarsize = HealthBar.Size.X.Offset
+                    local playerChar = attacking.Character
+                    local playerHumanoid = attacking.Character:WaitForChild("Humanoid")
+
+                    local healthbarxsize = 0.00581 * playerHumanoid.Health
+                    HealthLeft.Text = tostring(Round(playerHumanoid.Health)) .. " health left"
+                    HealthBar.Size = UDim2.new(healthbarxsize, 0, 0.246, 0)
+                    else
+                    MainGui.Visible = false
+                end 
+            end)
+            wait()
+        end
+    Heartbeat:wait()
+    end
+end)
