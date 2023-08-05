@@ -2147,7 +2147,6 @@ end))
 local flyb = -999
 game:GetService("RunService").Stepped:Connect(function()
 	for _, db in pairs(game.Players:GetPlayers()) do
-		if db.Character:FindFirstChildOfClass("Humanoid") and db.Character:FindFirstChild("HumanoidRootPart") and db ~= game.Players.LocalPlayer then
 			db.Character:FindFirstChild("HumanoidRootPart").CanCollide = false
 		end
 	end
