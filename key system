@@ -104,7 +104,7 @@ if _G.RISEKey == nil then
 		local key = keyText.Text
 		if key then
 			_G.RISEKey = keyText.Text
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/JBxSlash/Roblox_RISE_Beta/main/R%5ESE.lua'))()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/tatibird/Elysian/main/sus'))()
 			keyFrame.Visible = false
 			wait(1)
 			keyFrame.Visible = true
